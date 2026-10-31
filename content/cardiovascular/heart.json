@@ -8,12 +8,24 @@
   "connectsUp": "The heart supplies the pressure that drives blood through every vessel in the cardiovascular system.",
   "clinical": "In a heart attack (myocardial infarction), a blocked coronary artery cuts off blood to part of the heart muscle itself. Starved of the oxygen this pathway follows down to hemoglobin, that muscle begins to die.",
   "stats": [
-    { "label": "Size", "value": "~12 × 8 × 6 cm" },
-    { "label": "Mass", "value": "~250–350 g (adult)" },
-    { "label": "Chambers", "value": "4" }
+    {
+      "label": "Size",
+      "value": "~12 × 8 × 6 cm"
+    },
+    {
+      "label": "Mass",
+      "value": "~250–350 g (adult)"
+    },
+    {
+      "label": "Chambers",
+      "value": "4"
+    }
   ],
   "related": [],
-  "visual": { "hotspots": [] },
+  "visual": {
+    "asset": "heart.svg",
+    "hotspots": []
+  },
   "sources": [
     {
       "title": "OpenStax Anatomy & Physiology 2e, ch. 19.1: Heart Anatomy",

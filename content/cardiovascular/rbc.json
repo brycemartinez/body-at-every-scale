@@ -3,19 +3,42 @@
   "level": "cell",
   "title": "Red blood cell",
   "parent": "blood-tissue",
-  "children": ["rbc-membrane"],
+  "children": [
+    "rbc-membrane"
+  ],
   "summary": "A red blood cell, or erythrocyte, is a flexible, biconcave disc about 7–8 µm across, thinner in the middle than at the rim. Mature red cells have no nucleus and no mitochondria, which leaves room for hemoglobin, the protein that carries oxygen. Without mitochondria they make their energy without using oxygen, so they don't consume the cargo they carry. The biconcave shape gives a large surface for gas exchange and lets the cell fold to squeeze through capillaries narrower than itself.",
   "connectsUp": "Red blood cells are blood's oxygen carriers: nearly all the oxygen blood delivers rides inside them, bound to hemoglobin.",
   "deeper": "Red cells are made in red bone marrow, a process called erythropoiesis. When blood oxygen runs low, the kidneys release the hormone erythropoietin (EPO), which speeds production. After about four months of circulation, worn-out red cells are removed, mainly by macrophages in the spleen and liver, which recycle the iron from their hemoglobin.",
   "clinical": "In sickle cell disease, an altered hemoglobin makes red cells stiffen into a crescent shape when they give up oxygen. The rigid cells can jam small vessels and are destroyed early, causing pain crises and anemia.",
   "stats": [
-    { "label": "Size", "value": "~7–8 µm across" },
-    { "label": "Lifespan", "value": "~120 days" },
-    { "label": "Hemoglobin per cell", "value": "~300 million molecules" }
+    {
+      "label": "Size",
+      "value": "~7–8 µm across"
+    },
+    {
+      "label": "Lifespan",
+      "value": "~120 days"
+    },
+    {
+      "label": "Hemoglobin per cell",
+      "value": "~300 million molecules"
+    }
   ],
-  "related": ["alveolus", "spleen"],
+  "related": [
+    "alveolus",
+    "spleen"
+  ],
   "visual": {
-    "hotspots": [{ "target": "rbc-membrane", "shape": "circle", "x": 0.78, "y": 0.5, "r": 0.1 }]
+    "asset": "rbc.svg",
+    "hotspots": [
+      {
+        "target": "rbc-membrane",
+        "shape": "circle",
+        "x": 0.82,
+        "y": 0.33,
+        "r": 0.112
+      }
+    ]
   },
   "sources": [
     {

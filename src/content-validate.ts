@@ -20,7 +20,14 @@ export interface ValidationResult {
  * unique ids that match file names, one "body" root, parent/children agree both ways,
  * each child sits exactly one level below its parent, and hotspots only point at children.
  */
-export function validateContent(files: RawFile[]): ValidationResult {
+/** Each scene SVG must stay under this, per the handoff's performance notes. */
+export const MAX_ART_BYTES = 150 * 1024;
+
+/**
+ * `art` maps file names in public/art to their SVG text. When given, every `visual.asset` must
+ * exist, be a 1000×1000 drawing under MAX_ART_BYTES, and contain an element whose id is each child's id.
+ */
+export function validateContent(files: RawFile[], art?: Map<string, string>): ValidationResult {
   const errors: string[] = [];
   const warnings: string[] = [];
   const nodes = new Map<string, BodyNode>();
@@ -69,6 +76,19 @@ export function validateContent(files: RawFile[]): ValidationResult {
     }
     for (const h of node.visual.hotspots) {
       if (!node.children.includes(h.target)) errors.push(`${node.id}: hotspot target "${h.target}" is not a child`);
+    }
+    if (art && node.visual.asset) {
+      const svg = art.get(node.visual.asset);
+      if (svg === undefined) {
+        errors.push(`${node.id}: visual.asset "${node.visual.asset}" not found in public/art`);
+      } else {
+        const bytes = new TextEncoder().encode(svg).length;
+        if (bytes > MAX_ART_BYTES) errors.push(`${node.id}: ${node.visual.asset} is ${Math.round(bytes / 1024)} KB (max 150 KB)`);
+        if (!/<svg\b[^>]*\bviewBox="0 0 1000 1000"/.test(svg)) errors.push(`${node.id}: ${node.visual.asset} must use viewBox="0 0 1000 1000"`);
+        for (const childId of node.children) {
+          if (!svg.includes(`id="${childId}"`)) errors.push(`${node.id}: ${node.visual.asset} has no element with id="${childId}" for its hotspot`);
+        }
+      }
     }
     for (const rel of node.related) {
       if (rel === node.id) errors.push(`${node.id}: related lists itself`);

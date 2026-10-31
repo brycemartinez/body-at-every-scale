@@ -1,5 +1,5 @@
 // Node-only: used by the build plugin in vite.config.ts and by the Vitest content checks.
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { RawFile } from './content-validate.ts';
 
@@ -16,4 +16,14 @@ export function readContentFiles(dir: string): RawFile[] {
         return { file, data: { jsonParseError: (e as Error).message } };
       }
     });
+}
+
+/** SVG files in public/art, by file name. */
+export function readArtFiles(dir: string): Map<string, string> {
+  if (!existsSync(dir)) return new Map();
+  return new Map(
+    readdirSync(dir)
+      .filter((f) => f.endsWith('.svg'))
+      .map((f) => [f, readFileSync(join(dir, f), 'utf8')]),
+  );
 }

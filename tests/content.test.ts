@@ -1,12 +1,13 @@
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { validateContent, type RawFile } from '../src/content-validate.ts';
-import { readContentFiles } from '../src/read-content-files.ts';
+import { readArtFiles, readContentFiles } from '../src/read-content-files.ts';
 import { wordCount } from '../src/schema.ts';
 import { ancestry, pathFor, resolvePath } from '../src/tree.ts';
 
 const files = readContentFiles(resolve(import.meta.dirname, '../content'));
-const result = validateContent(files);
+const art = readArtFiles(resolve(import.meta.dirname, '../public/art'));
+const result = validateContent(files, art);
 const tree = result.tree!;
 const nodes = tree ? [...tree.nodes.values()] : [];
 
@@ -84,6 +85,14 @@ describe('validation rejects bad content', () => {
   it('rejects a hotspot that targets a non-child', () => {
     const visual = { hotspots: [{ target: 'ghost', shape: 'circle', x: 0.5, y: 0.5, r: 0.1 }] };
     expect(run(good({ visual })).errors.join()).toMatch(/not a child/);
+  });
+  it('rejects art that is missing a hotspot id for a child', () => {
+    const child = good({ id: 'cardiovascular', level: 'system', parent: 'body', title: 'CV' });
+    const root = good({ children: ['cardiovascular'], visual: { asset: 'body.svg', hotspots: [] } });
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><g id="heart"/></svg>';
+    const files = [root, child].map((d): RawFile => ({ file: `${d.id}.json`, data: d }));
+    expect(validateContent(files, new Map([['body.svg', svg]])).errors.join()).toMatch(/id="cardiovascular"/);
+    expect(validateContent(files, new Map()).errors.join()).toMatch(/not found/);
   });
   it('rejects malformed JSON', () => {
     expect(validateContent([{ file: 'x.json', data: { jsonParseError: 'Unexpected token' } }]).errors.length).toBeGreaterThan(0);

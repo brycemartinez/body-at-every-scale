@@ -294,7 +294,9 @@ a {
   position: absolute;
   inset: 0;
 }
-.scene-art {
+.scene-art,
+.scene-art-wrap > svg {
+  display: block;
   width: 100%;
   height: 100%;
   overflow: visible;
@@ -310,26 +312,6 @@ a {
 .art-figure--faint {
   opacity: 0.45;
 }
-.art-pulse {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 4;
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: pulse 2.6s ease-out infinite;
-}
-@keyframes pulse {
-  0% {
-    opacity: 0.7;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.45);
-  }
-}
-
 /* Hotspot buttons sit over the art; the shape is in the SVG, the label and focus ring here. */
 .hotspot {
   position: absolute;
@@ -346,6 +328,27 @@ a {
 }
 .hotspot--round {
   border-radius: 50%;
+}
+/* A soft ring that pulses outward so hotspots read as "you can go in here" on any drawing. */
+.hotspot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid color-mix(in srgb, var(--hue) 75%, white);
+  border-radius: inherit;
+  opacity: 0;
+  animation: pulse 2.6s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.3);
+  }
 }
 .hotspot:hover {
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--hue) 45%, transparent), 0 0 40px color-mix(in srgb, var(--hue) 50%, transparent);
@@ -635,7 +638,7 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .art-pulse,
+  .hotspot::after,
   .viewport[data-level='molecule']::before {
     animation: none;
   }

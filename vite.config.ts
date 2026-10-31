@@ -3,9 +3,10 @@ import { join, resolve } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { validateContent } from './src/content-validate.ts';
-import { readContentFiles } from './src/read-content-files.ts';
+import { readArtFiles, readContentFiles } from './src/read-content-files.ts';
 
 const contentDir = resolve(import.meta.dirname, 'content');
+const artDir = resolve(import.meta.dirname, 'public/art');
 const VIRTUAL_ID = 'virtual:content';
 const RESOLVED_ID = '\0' + VIRTUAL_ID;
 
@@ -22,14 +23,16 @@ function contentPlugin(): Plugin {
     load(id) {
       if (id !== RESOLVED_ID) return;
       const files = readContentFiles(contentDir);
+      const art = readArtFiles(artDir);
       for (const f of files) this.addWatchFile(join(contentDir, f.file));
-      const { tree, errors, warnings } = validateContent(files);
+      for (const name of art.keys()) this.addWatchFile(join(artDir, name));
+      const { tree, errors, warnings } = validateContent(files, art);
       for (const w of warnings) this.warn(w);
       if (!tree) this.error(`Content validation failed (${errors.length}):\n  ${errors.join('\n  ')}`);
       return `export default ${JSON.stringify([...tree.nodes.values()])};`;
     },
     handleHotUpdate({ file, server }) {
-      if (!file.startsWith(contentDir)) return;
+      if (!file.startsWith(contentDir) && !file.startsWith(artDir)) return;
       const mod = server.moduleGraph.getModuleById(RESOLVED_ID);
       if (mod) server.moduleGraph.invalidateModule(mod);
       server.ws.send({ type: 'full-reload' });

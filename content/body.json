@@ -3,18 +3,38 @@
   "level": "body",
   "title": "Human body",
   "parent": null,
-  "children": ["cardiovascular"],
+  "children": [
+    "cardiovascular"
+  ],
   "summary": "The human body is organized in levels, each built from the one below: chemicals form cells, cells form tissues, tissues form organs, and organs work together as organ systems. Anatomists group the body's organs into 11 organ systems. None of them works alone. Muscles need oxygen delivered by blood, blood needs the lungs to load that oxygen, and the heart has to keep it all moving. Choose a highlighted system to zoom in. Each step takes you down one scale, all the way to single molecules, and every stop explains how that part keeps the level above it working.",
   "connectsUp": "This is the top of the zoom: everything below exists to keep this one organism alive.",
   "deeper": "OpenStax describes six levels of structural organization: chemical, cellular, tissue, organ, organ system, and organism. This explorer splits the chemical level into molecules and the cell's internal structures (organelles), which gives seven zoom levels from the whole body down.",
   "stats": [
-    { "label": "Size", "value": "~1.7 m tall (adults vary widely)" },
-    { "label": "Organ systems", "value": "11" },
-    { "label": "Zoom levels here", "value": "7" }
+    {
+      "label": "Size",
+      "value": "~1.7 m tall (adults vary widely)"
+    },
+    {
+      "label": "Organ systems",
+      "value": "11"
+    },
+    {
+      "label": "Zoom levels here",
+      "value": "7"
+    }
   ],
   "related": [],
   "visual": {
-    "hotspots": [{ "target": "cardiovascular", "shape": "circle", "x": 0.5, "y": 0.34, "r": 0.1 }]
+    "asset": "body.svg",
+    "hotspots": [
+      {
+        "target": "cardiovascular",
+        "shape": "circle",
+        "x": 0.506,
+        "y": 0.312,
+        "r": 0.105
+      }
+    ]
   },
   "sources": [
     {

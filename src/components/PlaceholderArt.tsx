@@ -137,7 +137,6 @@ export function PlaceholderArt({ node, hotspots, hue, childHues }: Props) {
         <g key={h.target} id={h.target} data-shape={h.shape} className="art-child" style={{ color: childHues[h.target] }}>
           {h.shape === 'circle' ? (
             <>
-              <circle className="art-pulse" cx={h.x * VIEWBOX} cy={h.y * VIEWBOX} r={h.r * VIEWBOX} />
               <circle cx={h.x * VIEWBOX} cy={h.y * VIEWBOX} r={h.r * VIEWBOX} fill={`url(#${gid(h.target)})`} stroke="currentColor" strokeWidth="5" />
             </>
           ) : (

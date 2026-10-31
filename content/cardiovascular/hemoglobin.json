@@ -9,13 +9,30 @@
   "deeper": "Plotting hemoglobin's oxygen saturation against the partial pressure of oxygen gives an S-shaped oxygen–hemoglobin dissociation curve. The curve shifts to the right, so hemoglobin releases more oxygen, when tissue is warmer, more acidic, or richer in carbon dioxide: exactly the conditions in hard-working muscle. This is the Bohr effect. Fetal hemoglobin binds oxygen more tightly than adult hemoglobin, which lets a fetus draw oxygen from the mother's blood across the placenta.",
   "clinical": "A pulse oximeter shines red and infrared light through a fingertip and estimates how much hemoglobin is carrying oxygen (SpO₂), because oxygenated and deoxygenated hemoglobin absorb that light differently. A low reading means less oxygen is riding on hemoglobin. Carbon monoxide binds hemoglobin far more tightly than oxygen does, and a standard oximeter can't tell carbon monoxide–bound hemoglobin from the oxygenated kind, so the reading can look normal in a poisoned patient.",
   "stats": [
-    { "label": "O₂ per molecule", "value": "Up to 4" },
-    { "label": "Protein chains", "value": "4 (2 α + 2 β in adults)" },
-    { "label": "Blood O₂ carried", "value": "~98.5% bound to hemoglobin" },
-    { "label": "Structure", "value": "PDB 1A3N" }
+    {
+      "label": "O₂ per molecule",
+      "value": "Up to 4"
+    },
+    {
+      "label": "Protein chains",
+      "value": "4 (2 α + 2 β in adults)"
+    },
+    {
+      "label": "Blood O₂ carried",
+      "value": "~98.5% bound to hemoglobin"
+    },
+    {
+      "label": "Structure",
+      "value": "PDB 1A3N"
+    }
   ],
-  "related": ["alveolus"],
-  "visual": { "hotspots": [] },
+  "related": [
+    "alveolus"
+  ],
+  "visual": {
+    "asset": "hemoglobin.svg",
+    "hotspots": []
+  },
   "sources": [
     {
       "title": "OpenStax Anatomy & Physiology 2e, ch. 18.3: Erythrocytes",

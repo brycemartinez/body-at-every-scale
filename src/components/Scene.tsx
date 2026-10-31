@@ -1,8 +1,9 @@
-import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { BodyNode, Hotspot } from '../schema.ts';
 import type { ContentTree } from '../tree.ts';
 import { hueFor } from '../theme.ts';
-import { PlaceholderArt, VIEWBOX } from './PlaceholderArt.tsx';
+import { loadArt, peekArt } from '../art.ts';
+import { PlaceholderArt } from './PlaceholderArt.tsx';
 
 /** A hotspot's bounding box as fractions of the scene (top-left origin). */
 export interface Box {
@@ -40,47 +41,96 @@ const boxFromHotspot = (h: Hotspot): Box =>
     ? { x: h.x - h.r, y: h.y - h.r, w: h.r * 2, h: h.r * 2, round: true }
     : { x: h.x, y: h.y, w: h.w, h: h.h, round: false };
 
+/**
+ * Bounds of the element with id `target`, as fractions of the drawing. A `[data-hotspot-area]`
+ * inside it, if present, sets the clickable bounds instead (e.g. a whole vessel tree whose
+ * hotspot should only be the heart). Measured on screen, so transforms inside the SVG are honored.
+ */
+function measure(svg: SVGSVGElement, target: string): Box | null {
+  const group = svg.querySelector<SVGGraphicsElement>(`[id="${CSS.escape(target)}"]`);
+  if (!group) return null;
+  const el = group.querySelector<SVGGraphicsElement>('[data-hotspot-area]') ?? group;
+  const frame = svg.getBoundingClientRect();
+  const r = el.getBoundingClientRect();
+  if (!frame.width || !frame.height) return null;
+  return {
+    x: (r.left - frame.left) / frame.width,
+    y: (r.top - frame.top) / frame.height,
+    w: r.width / frame.width,
+    h: r.height / frame.height,
+    round: el instanceof SVGCircleElement || el instanceof SVGEllipseElement || group.dataset.shape === 'circle',
+  };
+}
+
 export function Scene({ tree, node, onEnter, onBoxes }: Props) {
   const artRef = useRef<HTMLDivElement>(null);
   const hotspots = useMemo(() => hotspotsFor(node), [node]);
   const childHues = useMemo(() => Object.fromEntries(node.children.map((c) => [c, hueFor(tree, c)])), [tree, node]);
   const [boxes, setBoxes] = useState<Record<string, Box>>({});
 
-  // Wire hotspots by id: find each child's element in the art and place a button over its bounds.
-  // Falls back to the JSON hotspot if the art has no element with that id.
-  useLayoutEffect(() => {
-    const svg = artRef.current?.querySelector('svg');
-    const next: Record<string, Box> = {};
-    for (const h of hotspots) {
-      const el = svg?.querySelector<SVGGraphicsElement>(`[id="${CSS.escape(h.target)}"]`);
-      if (el && typeof el.getBBox === 'function') {
-        const b = el.getBBox();
-        next[h.target] = {
-          x: b.x / VIEWBOX,
-          y: b.y / VIEWBOX,
-          w: b.width / VIEWBOX,
-          h: b.height / VIEWBOX,
-          round: el.dataset.shape !== 'rect',
-        };
-      } else {
-        next[h.target] = boxFromHotspot(h);
-      }
+  const asset = node.visual.asset;
+  const [art, setArt] = useState<{ svg: string | null; failed: boolean }>(() => ({
+    svg: asset ? peekArt(asset) : null,
+    failed: false,
+  }));
+  useEffect(() => {
+    if (!asset || art.svg) return;
+    let live = true;
+    loadArt(asset).then(
+      (svg) => live && setArt({ svg, failed: false }),
+      () => live && setArt({ svg: null, failed: true }),
+    );
+    return () => {
+      live = false;
+    };
+  }, [asset, art.svg]);
+
+  // Prefetch the children's art so zooming in doesn't wait on the network.
+  useEffect(() => {
+    for (const id of node.children) {
+      const childAsset = tree.nodes.get(id)?.visual.asset;
+      if (childAsset) loadArt(childAsset).catch(() => {});
     }
-    setBoxes(next);
-    onBoxes?.(next);
-    // Re-measure only when the scene's hotspots change, not when the onBoxes callback identity does.
-  }, [hotspots]);
+  }, [tree, node]);
+
+  const usePlaceholder = !asset || art.failed;
+  const ready = usePlaceholder || !!art.svg;
+
+  // Wire hotspots by id: find each child's element in the art and place a button over its bounds.
+  // Falls back to the JSON hotspot if the art has no element with that id. Re-measures when the
+  // drawing is resized, since on first load the stage can still be 0×0 when the art mounts.
+  useLayoutEffect(() => {
+    const wrap = artRef.current;
+    if (!ready || !wrap) return;
+    const update = () => {
+      const svg = wrap.querySelector('svg');
+      const next: Record<string, Box> = {};
+      for (const h of hotspots) next[h.target] = (svg && measure(svg, h.target)) || boxFromHotspot(h);
+      setBoxes(next);
+      onBoxes?.(next);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(wrap);
+    return () => ro.disconnect();
+    // Re-measure only when the drawing changes, not when the onBoxes callback identity does.
+  }, [hotspots, ready, art.svg]);
 
   return (
     <div className="scene" data-level={node.level}>
-      <div ref={artRef} className="scene-art-wrap">
-        <PlaceholderArt node={node} hotspots={hotspots} hue={hueFor(tree, node.id)} childHues={childHues} />
-      </div>
+      {usePlaceholder ? (
+        <div ref={artRef} className="scene-art-wrap">
+          <PlaceholderArt node={node} hotspots={hotspots} hue={hueFor(tree, node.id)} childHues={childHues} />
+        </div>
+      ) : (
+        // First-party SVG from public/art, validated at build time.
+        <div ref={artRef} className="scene-art-wrap" dangerouslySetInnerHTML={art.svg ? { __html: art.svg } : undefined} />
+      )}
       <div className="hotspots">
         {node.children.map((id) => {
           const child = tree.nodes.get(id)!;
           const box = boxes[id];
-          if (!box) return null;
+          if (!box || !ready) return null;
           return (
             <button
               key={id}

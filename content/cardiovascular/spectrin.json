@@ -8,11 +8,20 @@
   "connectsUp": "Spectrin is the scaffold that gives the red cell membrane both its strength and its spring.",
   "clinical": "Inherited spectrin defects are a common cause of hereditary spherocytosis, where red cells round up into fragile spheres that the spleen removes early.",
   "stats": [
-    { "label": "Location", "value": "Inner face of the membrane" },
-    { "label": "Shape", "value": "Long, flexible strands" }
+    {
+      "label": "Location",
+      "value": "Inner face of the membrane"
+    },
+    {
+      "label": "Shape",
+      "value": "Long, flexible strands"
+    }
   ],
   "related": [],
-  "visual": { "hotspots": [] },
+  "visual": {
+    "asset": "spectrin.svg",
+    "hotspots": []
+  },
   "sources": [
     {
       "title": "OpenStax Anatomy & Physiology 2e, ch. 18.3: Erythrocytes",
