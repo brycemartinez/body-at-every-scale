@@ -1,0 +1,26 @@
+{
+  "id": "blood",
+  "level": "organ",
+  "title": "Blood",
+  "parent": "cardiovascular",
+  "children": ["blood-tissue"],
+  "summary": "Blood is the fluid the heart pumps. Strictly it is a connective tissue, but at this scale it behaves like a fluid organ: roughly 5 liters filling the vessels. A little more than half is plasma, a watery liquid carrying dissolved nutrients, hormones, and proteins. A little less than half is formed elements: red blood cells, white blood cells, and platelets. Blood carries oxygen and carbon dioxide, defends against infection, clots to seal leaks, and helps keep body temperature and pH steady.",
+  "connectsUp": "Blood is what the cardiovascular system actually moves; the heart and vessels exist to keep it flowing.",
+  "deeper": "The share of blood volume made up of red cells is the hematocrit, averaging about 45% and normally a little lower in females than in males. Blood is slightly alkaline, a little warmer than core body temperature, and several times more viscous than water, mostly because of its cells and plasma proteins.",
+  "clinical": "Losing blood faster than the body can compensate causes hemorrhagic shock: with less volume in the loop, less oxygen reaches the tissues, however hard the heart pumps.",
+  "stats": [
+    { "label": "Volume", "value": "~5 L (adult)" },
+    { "label": "Plasma", "value": "~55% of volume" },
+    { "label": "pH", "value": "~7.35–7.45" }
+  ],
+  "related": [],
+  "visual": {
+    "hotspots": [{ "target": "blood-tissue", "shape": "circle", "x": 0.5, "y": 0.52, "r": 0.15 }]
+  },
+  "sources": [
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 18.1: An Overview of Blood",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-1-an-overview-of-blood"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "cardiovascular",
+  "level": "system",
+  "title": "Cardiovascular system",
+  "parent": "body",
+  "children": ["heart", "blood"],
+  "summary": "The cardiovascular system is the body's delivery network. The heart pumps blood through a closed loop of vessels that reaches nearly every cell. Arteries carry blood away from the heart, capillaries swap materials with the tissues around them, and veins bring blood back. On the way out, blood carries oxygen, nutrients, hormones, and heat; on the way back, it carries carbon dioxide and other wastes. An adult has roughly 5 liters of blood in this loop at any moment.",
+  "connectsUp": "Every other organ system depends on it: without circulation, cells far from the lungs and gut would be cut off from oxygen and nutrients.",
+  "deeper": "The loop is really two circuits in series. The pulmonary circuit, driven by the right side of the heart, sends blood through the lungs to pick up oxygen and unload carbon dioxide. The systemic circuit, driven by the left side, sends that oxygen-rich blood out to the rest of the body. Exchange with the tissues happens only in capillaries, whose walls are thin enough for gases, nutrients, and wastes to cross.",
+  "clinical": "Pulse, blood pressure, skin colour, and capillary refill are quick bedside checks on this system: together they show whether blood is actually reaching the tissues.",
+  "stats": [
+    { "label": "Main parts", "value": "Heart, blood vessels, blood" },
+    { "label": "Blood volume", "value": "~5 L (adult)" },
+    { "label": "Circuits", "value": "2 (pulmonary + systemic)" }
+  ],
+  "related": ["lungs"],
+  "visual": {
+    "hotspots": [
+      { "target": "heart", "shape": "circle", "x": 0.42, "y": 0.36, "r": 0.11 },
+      { "target": "blood", "shape": "circle", "x": 0.62, "y": 0.66, "r": 0.11 }
+    ]
+  },
+  "sources": [
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 18.1: An Overview of Blood",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-1-an-overview-of-blood"
+    },
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 19.1: Heart Anatomy",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/19-1-heart-anatomy"
+    },
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 20.1: Structure and Function of Blood Vessels",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/20-1-structure-and-function-of-blood-vessels"
+    }
+  ]
+}

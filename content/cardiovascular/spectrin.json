@@ -1,0 +1,26 @@
+{
+  "id": "spectrin",
+  "level": "molecule",
+  "title": "Spectrin",
+  "parent": "rbc-membrane",
+  "children": [],
+  "summary": "Spectrin is a long, flexible protein that lines the inside of the red cell membrane. Spectrin strands join into a net, and that net is tied to proteins embedded in the membrane above it, a bit like the springs under a mattress. The net stretches and folds as the cell squeezes through a capillary, then pulls the cell back into its disc shape once it is through.",
+  "connectsUp": "Spectrin is the scaffold that gives the red cell membrane both its strength and its spring.",
+  "clinical": "Inherited spectrin defects are a common cause of hereditary spherocytosis, where red cells round up into fragile spheres that the spleen removes early.",
+  "stats": [
+    { "label": "Location", "value": "Inner face of the membrane" },
+    { "label": "Shape", "value": "Long, flexible strands" }
+  ],
+  "related": [],
+  "visual": { "hotspots": [] },
+  "sources": [
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 18.3: Erythrocytes",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes"
+    },
+    {
+      "title": "StatPearls: Hereditary Spherocytosis (NCBI Bookshelf)",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK539797/"
+    }
+  ]
+}

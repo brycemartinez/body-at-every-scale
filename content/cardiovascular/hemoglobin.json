@@ -1,0 +1,37 @@
+{
+  "id": "hemoglobin",
+  "level": "molecule",
+  "title": "Hemoglobin",
+  "parent": "rbc-membrane",
+  "children": [],
+  "summary": "Hemoglobin is the protein that carries oxygen. Each molecule is built from four protein chains, and each chain holds a heme group with an iron ion at its center. Each iron binds one O₂ molecule, so one hemoglobin can carry four. Binding is cooperative: once one oxygen binds, the next binds more easily. That lets hemoglobin load up almost fully in the lungs, where oxygen is plentiful, and let go in the tissues, where it is scarce.",
+  "connectsUp": "Hemoglobin's reversible grip on oxygen is what turns a red blood cell into an oxygen carrier.",
+  "deeper": "Plotting hemoglobin's oxygen saturation against the partial pressure of oxygen gives an S-shaped oxygen–hemoglobin dissociation curve. The curve shifts to the right, so hemoglobin releases more oxygen, when tissue is warmer, more acidic, or richer in carbon dioxide: exactly the conditions in hard-working muscle. This is the Bohr effect. Fetal hemoglobin binds oxygen more tightly than adult hemoglobin, which lets a fetus draw oxygen from the mother's blood across the placenta.",
+  "clinical": "A pulse oximeter shines red and infrared light through a fingertip and estimates how much hemoglobin is carrying oxygen (SpO₂), because oxygenated and deoxygenated hemoglobin absorb that light differently. A low reading means less oxygen is riding on hemoglobin. Carbon monoxide binds hemoglobin far more tightly than oxygen does, and a standard oximeter can't tell carbon monoxide–bound hemoglobin from the oxygenated kind, so the reading can look normal in a poisoned patient.",
+  "stats": [
+    { "label": "O₂ per molecule", "value": "Up to 4" },
+    { "label": "Protein chains", "value": "4 (2 α + 2 β in adults)" },
+    { "label": "Blood O₂ carried", "value": "~98.5% bound to hemoglobin" },
+    { "label": "Structure", "value": "PDB 1A3N" }
+  ],
+  "related": ["alveolus"],
+  "visual": { "hotspots": [] },
+  "sources": [
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 18.3: Erythrocytes",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes"
+    },
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 22.5: Transport of Gases",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases"
+    },
+    {
+      "title": "StatPearls: Physiology, Oxygen Transport (NCBI Bookshelf)",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538336/"
+    },
+    {
+      "title": "RCSB PDB 1A3N: Deoxy human hemoglobin",
+      "url": "https://www.rcsb.org/structure/1A3N"
+    }
+  ]
+}

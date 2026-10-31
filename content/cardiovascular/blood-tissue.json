@@ -1,0 +1,29 @@
+{
+  "id": "blood-tissue",
+  "level": "tissue",
+  "title": "Blood as tissue",
+  "parent": "blood",
+  "children": ["rbc"],
+  "summary": "Spread a drop of blood thin on a glass slide and look through a microscope, and it shows itself as a tissue: cells suspended in a liquid matrix. That matrix is plasma. Red blood cells vastly outnumber everything else. White blood cells appear as scattered, larger cells with stained nuclei, and platelets are tiny cell fragments. Like other connective tissues, blood is mostly matrix with cells spread through it. The difference is that its matrix is liquid, which is what lets it flow.",
+  "connectsUp": "The cells and plasma in this tissue give blood its jobs: red cells carry oxygen, white cells defend, and platelets help clot.",
+  "clinical": "A complete blood count (CBC) measures exactly these components: red cells, hemoglobin, hematocrit, white cells, and platelets.",
+  "stats": [
+    { "label": "Classed as", "value": "Fluid connective tissue" },
+    { "label": "Formed elements", "value": "~45% of volume" },
+    { "label": "Red cells", "value": "~5 million per µL" }
+  ],
+  "related": [],
+  "visual": {
+    "hotspots": [{ "target": "rbc", "shape": "circle", "x": 0.4, "y": 0.46, "r": 0.11 }]
+  },
+  "sources": [
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 4.3: Connective Tissue Supports and Protects",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects"
+    },
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 18.1: An Overview of Blood",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-1-an-overview-of-blood"
+    }
+  ]
+}

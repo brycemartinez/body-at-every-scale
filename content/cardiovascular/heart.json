@@ -1,0 +1,23 @@
+{
+  "id": "heart",
+  "level": "organ",
+  "title": "Heart",
+  "parent": "cardiovascular",
+  "children": [],
+  "summary": "The heart is a muscular pump about the size of a fist, sitting in the chest between the lungs. It has four chambers: two upper atria that receive blood, and two lower ventricles that pump it out. Valves between the chambers and at the exits keep blood moving in one direction. The right side pumps oxygen-poor blood to the lungs. The left side, with a much thicker muscular wall, pumps oxygen-rich blood out to the whole body.",
+  "connectsUp": "The heart supplies the pressure that drives blood through every vessel in the cardiovascular system.",
+  "clinical": "In a heart attack (myocardial infarction), a blocked coronary artery cuts off blood to part of the heart muscle itself. Starved of the oxygen this pathway follows down to hemoglobin, that muscle begins to die.",
+  "stats": [
+    { "label": "Size", "value": "~12 × 8 × 6 cm" },
+    { "label": "Mass", "value": "~250–350 g (adult)" },
+    { "label": "Chambers", "value": "4" }
+  ],
+  "related": [],
+  "visual": { "hotspots": [] },
+  "sources": [
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 19.1: Heart Anatomy",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/19-1-heart-anatomy"
+    }
+  ]
+}

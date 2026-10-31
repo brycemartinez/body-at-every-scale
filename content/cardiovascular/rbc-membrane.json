@@ -1,0 +1,40 @@
+{
+  "id": "rbc-membrane",
+  "level": "organelle",
+  "title": "Membrane & cytoskeleton",
+  "parent": "rbc",
+  "children": ["hemoglobin", "spectrin"],
+  "summary": "With no nucleus or other organelles, a red cell's key internal structure is its envelope: a plasma membrane braced from inside by a mesh of the protein spectrin. The membrane is a lipid bilayer studded with proteins, including the surface antigens that set your blood type. The spectrin mesh acts as a flexible scaffold, letting the cell bend and fold through tight capillaries and then spring back into a disc. The cytoplasm this envelope encloses is packed with hemoglobin.",
+  "connectsUp": "This flexible envelope gives the red cell its shape and its ability to deform, and it holds the cell's hemoglobin cargo together.",
+  "clinical": "In hereditary spherocytosis, inherited defects in spectrin or the proteins that anchor it make red cells lose membrane and round up into spheres. The stiff spheres get trapped and destroyed in the spleen, causing anemia and jaundice.",
+  "stats": [
+    { "label": "Scaffold protein", "value": "Spectrin" },
+    { "label": "Membrane", "value": "Lipid bilayer + proteins" },
+    { "label": "Blood-type antigens", "value": "On the outer surface" }
+  ],
+  "related": [],
+  "visual": {
+    "hotspots": [
+      { "target": "hemoglobin", "shape": "circle", "x": 0.4, "y": 0.58, "r": 0.11 },
+      { "target": "spectrin", "shape": "circle", "x": 0.68, "y": 0.32, "r": 0.09 }
+    ]
+  },
+  "sources": [
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 3.1: The Cell Membrane",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/3-1-the-cell-membrane"
+    },
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 18.3: Erythrocytes",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes"
+    },
+    {
+      "title": "OpenStax Anatomy & Physiology 2e, ch. 18.6: Blood Typing",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-6-blood-typing"
+    },
+    {
+      "title": "StatPearls: Hereditary Spherocytosis (NCBI Bookshelf)",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK539797/"
+    }
+  ]
+}
